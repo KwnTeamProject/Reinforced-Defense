@@ -6,13 +6,14 @@ public class MainSystem : MonoBehaviour
 {
     [Header("스테이지 정보")]
     [SerializeField] int stageInfo;
-    [SerializeField] float elapsedTime;
+    [SerializeField] float remainingTime;
+    [SerializeField] float stageDuration;
     [SerializeField] TMP_Text timerText;
 
-    [Header("웨이브 정보")]
-    [SerializeField] int enemyCount;
-    [SerializeField] int waveCount;
-    [SerializeField] int maxWaveCount;
+    [Header("몬스터 정보")]
+    [SerializeField] int currentEnemyCount;
+    [SerializeField] int maxEnemyCount;
+    [SerializeField] TMP_Text enemyText;
 
     [Header("잡다구리 변수")]
     public bool isStageStarted = false;
@@ -30,8 +31,9 @@ public class MainSystem : MonoBehaviour
 
         if (!isStageStarted || isPaused) return;
 
-        elapsedTime += Time.deltaTime;
+        remainingTime -= Time.deltaTime;
         UpdateTimerText();
+        UpdateEnemyCountText();
     }
 
     public void StartStage()
@@ -45,7 +47,7 @@ public class MainSystem : MonoBehaviour
 
     void TimerReset()
     {
-        elapsedTime = 0;
+        remainingTime = stageDuration;
     }
 
     public void Pause()
@@ -65,14 +67,20 @@ public class MainSystem : MonoBehaviour
     {
         if (timerText == null) return;
 
-        int minutes = Mathf.FloorToInt(elapsedTime / 60f);
-        float secondsWithFraction = elapsedTime % 60f;
+        int minutes = Mathf.FloorToInt(remainingTime / 60f);
+        float secondsWithFraction = remainingTime % 60f;
 
         timerText.text = $"{minutes:D2}:{secondsWithFraction:00.00}";
+    }
+    private void UpdateEnemyCountText()
+    {
+        if (enemyText == null) return;
+
+        enemyText.text = $"{currentEnemyCount}/{maxEnemyCount}";
     }
 
     public float GetElapsedTime()
     {
-        return elapsedTime;
+        return remainingTime;
     }
 }
