@@ -1,24 +1,31 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor;
 
 public class MainSystem : MonoBehaviour
 {
+    public static MainSystem mainSystemInstance;
+
     [Header("스테이지 정보")]
-    [SerializeField] int stageInfo;
-    [SerializeField] float remainingTime;
-    [SerializeField] float stageDuration;
+    public int stageInfo;
+    public float remainingTime;
+    public float stageDuration;
     [SerializeField] TMP_Text timerText;
 
     [Header("몬스터 정보")]
-    [SerializeField] int currentEnemyCount;
-    [SerializeField] int maxEnemyCount;
+    public int currentEnemyCount;
+    public int maxEnemyCount;
     [SerializeField] TMP_Text enemyText;
 
     [Header("잡다구리 변수")]
     public bool isStageStarted = false;
     public bool isPaused = false;
 
+    private void Awake()
+    {
+        MainSystem.mainSystemInstance = this;
+    }
 
     private void Start()
     {
@@ -27,6 +34,7 @@ public class MainSystem : MonoBehaviour
 
     private void Update()
     {
+        GameEnd();
         TakePause();
 
         if (!isStageStarted || isPaused) return;
@@ -50,17 +58,18 @@ public class MainSystem : MonoBehaviour
         remainingTime = stageDuration;
     }
 
-    public void Pause()
-    {
-        isPaused = !isPaused;
-    }
-
     public void TakePause()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            Pause();
+            isPaused = !isPaused;
         }
+    }
+
+    public void GameEnd()
+    {
+        if (currentEnemyCount == maxEnemyCount)
+            Exit();
     }
 
     private void UpdateTimerText()
@@ -72,7 +81,7 @@ public class MainSystem : MonoBehaviour
 
         timerText.text = $"{minutes:D2}:{secondsWithFraction:00.00}";
     }
-    private void UpdateEnemyCountText()
+    public void UpdateEnemyCountText()
     {
         if (enemyText == null) return;
 
@@ -82,5 +91,14 @@ public class MainSystem : MonoBehaviour
     public float GetElapsedTime()
     {
         return remainingTime;
+    }
+
+    public void Exit()
+    {
+#if UNITY_EDITOR
+        EditorApplication.ExitPlaymode();
+#else
+        Application.Quit(); // Unity 플레이어를 종료하는 원본 코드
+#endif
     }
 }
