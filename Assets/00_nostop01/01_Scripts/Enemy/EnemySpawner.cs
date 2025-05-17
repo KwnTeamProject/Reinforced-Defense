@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(testEnemy);
+            var EnemyGo = ObjectPoolManager.instance.GetGo("TestEnemy");
         }
     }
 }

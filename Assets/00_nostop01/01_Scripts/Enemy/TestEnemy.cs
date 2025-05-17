@@ -1,13 +1,16 @@
 using UnityEngine;
 
-public class TestEnemy : MonoBehaviour,IEnemy
+public class TestEnemy : PoolAble, IEnemy
 {
-    private void OnEnable()
+    public float speed { get; set; } = 2f;
+    public float rayDistance { get; set; } = 0.5f;
+
+    public void OnEnable()
     {
         EnemyManager.Register(this);
     }
 
-    private void OnDisable()
+    public void OnDisable()
     {
         EnemyManager.Unregister(this);
     }
@@ -16,5 +19,4 @@ public class TestEnemy : MonoBehaviour,IEnemy
     {
         EnemyManager.Unregister(this);
     }
-
 }
