@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : PoolAble, IEnemy
+public class EnemyMovement : MonoBehaviour
 {
-    public float speed { get; set; } = 2f; // 이동 속도
-    public float rayDistance { get; set; } = 0.25f;
+    public float speed = 2f; // 이동 속도
+    public float rayDistance = 0.25f;
 
     private List<Transform> targetPositions = new List<Transform>(); // 타겟 위치 리스트
     private int currentTargetIndex = 0; // 현재 타겟 인덱스
@@ -29,6 +29,9 @@ public class EnemyMovement : PoolAble, IEnemy
 
     private void Update()
     {
+        if (MainSystem.mainSystemInstance.isPaused)
+            return;
+
         // 타겟이 없으면 이동하지 않음
         if (targetPositions.Count == 0) return;
 
@@ -43,20 +46,5 @@ public class EnemyMovement : PoolAble, IEnemy
         {
             currentTargetIndex = (currentTargetIndex + 1) % targetPositions.Count; // 순환 구조
         }
-    }
-
-    public void OnEnable()
-    {
-        EnemyManager.Register(this);
-    }
-
-    public void OnDisable()
-    {
-        EnemyManager.Unregister(this);
-    }
-
-    private void OnDestroy()
-    {
-        EnemyManager.Unregister(this);
     }
 }

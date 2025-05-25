@@ -6,6 +6,9 @@ public class EnemySpawner : MonoBehaviour
 
     public void Update()
     {
+        if (MainSystem.mainSystemInstance.isPaused)
+            return;
+
         SpawnEnemy();
     }
 
