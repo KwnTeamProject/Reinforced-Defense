@@ -6,6 +6,9 @@ public class EnemySpawner : MonoBehaviour
 
     public void Update()
     {
+        if (MainSystem.mainSystemInstance.isPaused)
+            return;
+
         SpawnEnemy();
     }
 
@@ -13,7 +16,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(testEnemy);
+            var EnemyGo = ObjectPoolManager.instance.GetGo("TestEnemy");
         }
     }
 }

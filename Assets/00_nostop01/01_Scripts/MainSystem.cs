@@ -37,11 +37,12 @@ public class MainSystem : MonoBehaviour
         GameEnd();
         TakePause();
 
+        UpdateEnemyCountText();
+
         if (!isStageStarted || isPaused) return;
 
         remainingTime -= Time.deltaTime;
         UpdateTimerText();
-        UpdateEnemyCountText();
     }
 
     public void StartStage()
