@@ -5,7 +5,7 @@ public class NormalBullet : MonoBehaviour
     public DamageType attackType = DamageType.Physical;
 
     private Transform target;
-    private int damage = 2;
+    private int damage;
     public float speed = 5f;
 
     public void SetTarget(Transform target)

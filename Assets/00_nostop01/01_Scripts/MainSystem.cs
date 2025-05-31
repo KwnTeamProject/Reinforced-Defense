@@ -29,7 +29,7 @@ public class MainSystem : MonoBehaviour
 
     private void Start()
     {
-        DontDestroyOnLoad(gameObject);
+        
     }
 
     private void Update()

@@ -14,12 +14,12 @@ public class EnemyHealth : PoolAble, IEnemy
     public int currentHealth { get; set; }
 
     // 방어력
-    public int defense { get; set; }
+    public int defense { get; set; } = 10;
 
     // 속성별 내성 (0.0f = 무저항, 1.0f = 완전 면역)
-    public float physicalResistance { get; set; }
-    public float magicalResistance { get; set; }
-    public float elementalResistance { get; set; }
+    public float physicalResistance { get; set; } = 0.5f;
+    public float magicalResistance { get; set; } = 1.0f;
+    public float elementalResistance { get; set; } = 1.0f;
 
     private SpriteRenderer spriteRenderer;
 
@@ -77,7 +77,10 @@ public class EnemyHealth : PoolAble, IEnemy
     private void Die()
     {
         Debug.Log("적이 사망했습니다.");
+
         // 사망 처리 로직
+        currentHealth = maxHealth;
+        spriteRenderer.color = Color.white;
         Pool.Release(this.gameObject);
     }
 
@@ -85,7 +88,7 @@ public class EnemyHealth : PoolAble, IEnemy
     private IEnumerator TakeDamageAfter()
     {
         spriteRenderer.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
         spriteRenderer.color = Color.white;
     }
 

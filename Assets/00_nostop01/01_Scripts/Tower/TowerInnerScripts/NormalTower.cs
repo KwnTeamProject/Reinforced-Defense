@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class NormalTower : PoolAble, ITower
 {
-    public int AttackPower { get; set; } = 0;
+    public int AttackPower { get; set; } = 40;
     public int AttackSpeed { get; set; } = 2;
-    public int AttackRange { get; set; } = 2;
+    public float AttackRange { get; set; } = 2.25f;
 
     [SerializeField] private string[] upgradeTowerPoolNames;
 
@@ -25,6 +25,11 @@ public class NormalTower : PoolAble, ITower
         {
             attackCooldown -= Time.deltaTime;
         }
+    }
+
+    public void TowerDeSpawn()
+    {
+        Pool.Release(this.gameObject);
     }
 
     public void Attack()
