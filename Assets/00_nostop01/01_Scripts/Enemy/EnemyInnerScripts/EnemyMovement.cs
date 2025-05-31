@@ -6,8 +6,18 @@ public class EnemyMovement : MonoBehaviour
     public float speed = 2f; // 이동 속도
     public float rayDistance = 0.25f;
 
+    [SerializeField] private GameObject start_Pos;
+    private Vector3 startPos;
+
     private List<Transform> targetPositions = new List<Transform>(); // 타겟 위치 리스트
     private int currentTargetIndex = 0; // 현재 타겟 인덱스
+
+    private void Awake()
+    {
+        start_Pos = GameObject.FindGameObjectWithTag("StartPos");
+
+        startPos = start_Pos.transform.position;
+    }
 
     private void Start()
     {
@@ -25,6 +35,13 @@ public class EnemyMovement : MonoBehaviour
         {
             Debug.LogWarning("TargetGroup의 자식이 존재하지 않거나 그룹을 찾을 수 없습니다.");
         }
+    }
+
+    private void OnDisable()
+    {
+        transform.position = startPos;
+
+        currentTargetIndex = 0;
     }
 
     private void Update()
