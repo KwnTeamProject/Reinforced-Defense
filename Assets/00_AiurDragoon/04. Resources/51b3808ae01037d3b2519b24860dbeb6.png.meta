@@ -1,14 +1,16 @@
 fileFormatVersion: 2
-guid: 90a2dde0942123c4ebb9c4af580c5818
-AssetOrigin:
-  serializedVersion: 1
-  productId: 103811
-  packageName: 'Fantasy Wooden GUI : Free'
-  packageVersion: 2.0
-  assetPath: Assets/Fantasy Wooden GUI  Free/normal_ui_set A/UI board Large Set.png
-  uploadId: 294936
+guid: 93669a88d351545478881cef1218824a
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 8682760134335669321
+    second: 51b3808ae01037d3b2519b24860dbeb6_0
+  - first:
+      213: 4970540606500760711
+    second: 51b3808ae01037d3b2519b24860dbeb6_1
+  - first:
+      213: 5029156918193185954
+    second: 51b3808ae01037d3b2519b24860dbeb6_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -50,7 +52,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -70,9 +72,9 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 1
+  applyGammaDecoding: 0
   swizzle: 50462976
-  cookieLightType: 1
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
@@ -117,23 +119,67 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI board Large Set_0
+      name: 51b3808ae01037d3b2519b24860dbeb6_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 921
-        height: 617
+        x: 41
+        y: 535
+        width: 666
+        height: 112
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 40, y: 43, z: 40, w: 44}
+      border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 372fa435814273043bfa134e76fe98d3
-      internalID: -160240617
+      spriteID: 9442005c65c5f7870800000000000000
+      internalID: 8682760134335669321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 51b3808ae01037d3b2519b24860dbeb6_1
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 314
+        width: 666
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78ce128b858eaf440800000000000000
+      internalID: 4970540606500760711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 51b3808ae01037d3b2519b24860dbeb6_2
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 93
+        width: 666
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a46a9c42972bc540800000000000000
+      internalID: 5029156918193185954
       vertices: []
       indices: 
       edges: []
@@ -142,7 +188,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 41f158d5c81384f4da5fb97df56b72e8
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -152,7 +198,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      UI board Large Set_0: -160240617
+      51b3808ae01037d3b2519b24860dbeb6_0: 8682760134335669321
+      51b3808ae01037d3b2519b24860dbeb6_1: 4970540606500760711
+      51b3808ae01037d3b2519b24860dbeb6_2: 5029156918193185954
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
