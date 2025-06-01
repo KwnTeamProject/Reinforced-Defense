@@ -4,7 +4,7 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject testEnemy;
 
-    public float spawnCooldown = 0f;
+    public float spawnCooldown = 3f;
     public float spawnTimer = 3f;
 
     public void Update()

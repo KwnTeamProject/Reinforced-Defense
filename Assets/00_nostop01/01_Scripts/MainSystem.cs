@@ -82,6 +82,7 @@ public class MainSystem : MonoBehaviour
 
         timerText.text = $"{minutes:D2}:{secondsWithFraction:00.00}";
     }
+
     public void UpdateEnemyCountText()
     {
         if (enemyText == null) return;

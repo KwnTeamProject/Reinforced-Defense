@@ -4,8 +4,21 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/00_nostop01/00_Scenes/MainScene.unity
+    guid: 84b50e853a0797b47b6ea576d72c4096
+  - enabled: 1
+    path: Assets/00_nostop01/00_Scenes/LobbyScene.unity
+    guid: 5b3d33a4095f174469c1f336dddc11b0
+  - enabled: 1
+    path: Assets/00_nostop01/00_Scenes/DevScene.unity
+    guid: 6cd159039e8fa9f4498ee6958d5b0d63
   m_configObjects:
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 51337b5a1dc9e8e4ebb33e52a8226325,
+      type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000,
+      guid: 332a20be29799414ebab27ba927bd343, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000,
       guid: ab3c96ce160673e4598693a426595b75, type: 2}
   m_UseUCBPForAssetBundles: 0
