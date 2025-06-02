@@ -17,7 +17,7 @@ public class BattleBelowUI : MonoBehaviour
     public void SetInit()
     {
         RectTransform RT = Contents.GetComponent<RectTransform>();
-        RT.sizeDelta = new Vector2(RT.sizeDelta.x, 30 + (155 * TowerCount));
+        RT.sizeDelta = new Vector2(RT.sizeDelta.x, 14 + (87 * TowerCount));
 
         for (int i = 0; i < TowerCount; i++)
         {
