@@ -2,24 +2,56 @@ using UnityEngine;
 
 public class NormalTower : PoolAble, ITower
 {
-    public int AttackPower { get; set; } = 0;
+    public int AttackPower { get; set; } = 40;
     public int AttackSpeed { get; set; } = 2;
-    public int AttackRange { get; set; } = 2;
+    public float AttackRange { get; set; } = 2.25f;
 
     [SerializeField] private string[] upgradeTowerPoolNames;
 
     public GameObject normalTowerBullet;
 
+    private float attackCooldown = 0f;
+
     public Transform GetTransform() => transform;
 
     void Update()
     {
+        if (attackCooldown <= 0f)
+        {
+            Attack();
+            attackCooldown = 1f / AttackSpeed; // 공격 속도 적용
+        }
+        else
+        {
+            attackCooldown -= Time.deltaTime;
+        }
+    }
 
+    public void TowerDeSpawn()
+    {
+        Pool.Release(this.gameObject);
     }
 
     public void Attack()
     {
-        Instantiate(normalTowerBullet);
+        // 1. AttackRange 내 적 감지 (2D)
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, AttackRange, LayerMask.GetMask("Enemy"));
+
+        if (hits.Length == 0)
+            return;
+
+        // 2. 가장 먼저 들어온 적(리스트 첫 번째)을 우선 타겟
+        Transform target = hits[0].transform;
+
+        // 3. 총알 생성 및 타겟 설정
+        GameObject bullet = Instantiate(normalTowerBullet, transform.position, Quaternion.identity);
+
+        NormalBullet bulletComp = bullet.GetComponent<NormalBullet>();
+        if (bulletComp != null)
+        {
+            bulletComp.SetTarget(target);
+            bulletComp.SetDamage(AttackPower);
+        }
     }
 
     public void Upgrade()
@@ -43,5 +75,11 @@ public class NormalTower : PoolAble, ITower
     private void OnDisable()
     {
         TowerManager.Instance.UnregisterTower(this);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, AttackRange);
     }
 }
