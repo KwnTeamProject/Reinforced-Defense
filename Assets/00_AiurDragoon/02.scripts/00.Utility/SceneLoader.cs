@@ -10,7 +10,7 @@ public class SceneLoader : MonoBehaviour
 
     private void Awake()
     {
-        SceneLoader.SceneLoaderInstance = this;
+        SceneLoaderInstance = this;
     }
 
 
@@ -21,9 +21,9 @@ public class SceneLoader : MonoBehaviour
 
 
 
-    public void ChangeScene(eSceneNames Scene)
+    public void ChangeScene(string SceneName)
     {
-        SceneManager.LoadScene(Scene.ToString());
+        SceneManager.LoadScene(SceneName);
     }
 
 

@@ -6,7 +6,7 @@ public class BattleStartButtton : MonoBehaviour
 
     public void StartBattleScene()
     {
-        SceneLoader.SceneLoaderInstance.ChangeScene(eSceneNames.BattleScene);
+        SceneLoader.SceneLoaderInstance.ChangeScene("StartBattleScene");
     }
 
 
