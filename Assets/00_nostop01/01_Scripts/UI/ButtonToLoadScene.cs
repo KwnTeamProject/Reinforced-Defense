@@ -11,8 +11,15 @@ public class ButtonToLoadScene : MonoBehaviour
 
     void Start()
     {
-        // 씬 시작 시 페이드 인
-        StartCoroutine(FadeIn());
+        if (fadeImage == null)
+            return;
+
+        else if(fadeImage.gameObject.activeSelf == false)
+            fadeImage.gameObject.SetActive(true);
+
+        else
+            // 씬 시작 시 페이드 인
+            StartCoroutine(FadeIn());
     }
 
     // 버튼에서 이 함수를 호출하도록 연결

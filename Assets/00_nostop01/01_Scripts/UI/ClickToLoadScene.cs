@@ -12,8 +12,15 @@ public class ClickToLoadScene : MonoBehaviour
 
     void Start()
     {
-        // 시작 시 페이드 인
-        StartCoroutine(FadeIn());
+        if (fadeImage == null)
+            return;
+
+        else if (fadeImage.gameObject.activeSelf == false)
+            fadeImage.gameObject.SetActive(true);
+
+        else
+            // 씬 시작 시 페이드 인
+            StartCoroutine(FadeIn());
     }
 
     void Update()
