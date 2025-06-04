@@ -2702,12 +2702,12 @@ GameObject:
   - component: {fileID: 1658918479}
   - component: {fileID: 1658918478}
   m_Layer: 5
-  m_Name: Image
+  m_Name: FadeImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1658918478
 MonoBehaviour:
   m_ObjectHideFlags: 0
