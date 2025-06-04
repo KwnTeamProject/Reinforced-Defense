@@ -1,5 +1,7 @@
+using Mono.Cecil;
 using System.Globalization;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UserDataManager : MonoBehaviour
 {
@@ -7,11 +9,22 @@ public class UserDataManager : MonoBehaviour
     public static UserDataManager UserDataManagerInstance { get; private set; }
 
 
+    //임시
+    [SerializeField] Slider volSlider;
+    [SerializeField] Slider briSlider;
+
+
+
 
     //저장 데이터
     public string Name { get; private set; } = "";
     public int Gold { get; private set; } = 0;
     public float HighRecord { get; private set; } = -1f;
+
+    public float Volume { get; private set; }
+    public float Brightness { get; private set; }
+
+    float TmpVolume = 0.5f, TmpBrightness = 0.5f;
 
 
     private void Awake()
@@ -41,6 +54,32 @@ public class UserDataManager : MonoBehaviour
     {
         HighRecord = Record;
     }
+
+    //설정값
+    public void ChangeTmpVolume()
+    {
+        TmpVolume = volSlider.value;
+    }
+    public void ChangeTmpBright()
+    {
+        TmpBrightness = briSlider.value;
+    }
+    public void SaveSettings()
+    {
+        Volume = TmpVolume;
+        Brightness = TmpBrightness;
+    }
+    public void UndoSettings()
+    {
+        TmpVolume = Volume;
+        TmpBrightness = Brightness;
+
+        volSlider.value = Volume;
+        briSlider.value = Volume;
+
+    }
+
+
 
 
     // Save & Load
