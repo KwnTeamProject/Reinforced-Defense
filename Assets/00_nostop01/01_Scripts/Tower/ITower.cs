@@ -6,9 +6,10 @@ public interface ITower
     int AttackSpeed { get; set; }
     float AttackRange {  get; set; }
     
-
-    void Attack();
+    void OnSelected();
+    void OnDeselected();
     void Upgrade();
+    void Attack();
     void TowerDeSpawn();
     Transform GetTransform();
 }

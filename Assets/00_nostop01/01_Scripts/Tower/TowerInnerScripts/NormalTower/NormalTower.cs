@@ -10,9 +10,20 @@ public class NormalTower : PoolAble, ITower
 
     public GameObject normalTowerBullet;
 
+    private Material defaultMat;
+    public Material selectedMat;
+
+    private SpriteRenderer spriteRenderer;
+
     private float attackCooldown = 0f;
 
     public Transform GetTransform() => transform;
+
+    void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        defaultMat = spriteRenderer.material;
+    }
 
     void Update()
     {
@@ -31,6 +42,17 @@ public class NormalTower : PoolAble, ITower
     {
         Pool.Release(this.gameObject);
     }
+
+    public void OnSelected()
+    {
+        spriteRenderer.material = selectedMat;
+    }
+
+    public void OnDeselected()
+    {
+        spriteRenderer.material = defaultMat;
+    }
+    
 
     public void Attack()
     {
@@ -57,12 +79,14 @@ public class NormalTower : PoolAble, ITower
     public void Upgrade()
     {
         // 0, 1, 2 중 랜덤 선택
-        int randomIndex = Random.Range(0, 3); // upper bound는 포함되지 않으므로 0~2
+        //int randomIndex = Random.Range(0, 3); // upper bound는 포함되지 않으므로 0~2
+        int randomIndex = 0; // 임시 테스트용
         string selectedPoolName = upgradeTowerPoolNames[randomIndex];
 
         Debug.Log($"{name} 업그레이드! 선택된 업그레이드 번호: {randomIndex}");
 
-        TowerManager.Instance.UpgradeTower(this, selectedPoolName);
+        TowerManager.Instance.UpgradeTower(selectedPoolName);
+        Pool.Release(this.gameObject);
     }
 
     // 오브젝트가 활성화될 때 TowerManager에 등록
