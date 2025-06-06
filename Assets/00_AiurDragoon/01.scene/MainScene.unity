@@ -1410,6 +1410,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 183606910}
+  - component: {fileID: 183606911}
   m_Layer: 5
   m_Name: MainUIs
   m_TagString: Untagged
@@ -1446,6 +1447,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &183606911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183606909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f06ca16f94c17b438344b0a97c1a72c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UserNameText: {fileID: 1026879541}
+  GoldText: {fileID: 889430063}
+  BGImage: {fileID: 404693553}
 --- !u!1 &190621450
 GameObject:
   m_ObjectHideFlags: 0
@@ -1539,8 +1555,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b961f0cbc84255f4993d266dc49c48ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerNameText: {fileID: 0}
-  HighRecordText: {fileID: 0}
+  PlayerNameText: {fileID: 1601704851}
+  HighRecordText: {fileID: 297666975}
 --- !u!1 &192207621
 GameObject:
   m_ObjectHideFlags: 0
@@ -2664,7 +2680,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC2A4\uD14C\uC774\uC9C0 \uCD5C\uACE0\uAE30\uB85D\n00:00:00"
+  m_Text: "\uD074\uB9AC\uC5B4 \uCD5C\uACE0\uAE30\uB85D\n00:00:00"
 --- !u!222 &297666976
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4294,6 +4310,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 190621454}
+        m_TargetAssemblyTypeName: ProfileUI, Assembly-CSharp
+        m_MethodName: SetUI
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!222 &695777087
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4939,7 +4967,7 @@ GameObject:
   - component: {fileID: 749500548}
   - component: {fileID: 749500547}
   m_Layer: 5
-  m_Name: StageCountUI
+  m_Name: HighRecordUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6055,13 +6083,13 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 110
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 9999999999
+  m_Text: 999999999
 --- !u!222 &889430064
 CanvasRenderer:
   m_ObjectHideFlags: 0

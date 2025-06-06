@@ -1,5 +1,6 @@
 using Mono.Cecil;
 using System.Globalization;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +18,7 @@ public class UserDataManager : MonoBehaviour
 
 
     //저장 데이터
-    public string Name { get; private set; } = "";
+    public string Name { get; private set; } = "Player";
     public int Gold { get; private set; } = 0;
     public float HighRecord { get; private set; } = -1f;
 
@@ -35,6 +36,14 @@ public class UserDataManager : MonoBehaviour
     private void Start()
     {
         DontDestroyOnLoad(UserDataManagerInstance);
+
+        LoadData();
+
+        GameObject MainUIs = GameObject.Find("MainUIs");
+        MainMenuUI MMUIs = MainUIs.GetComponent<MainMenuUI>();
+
+        MMUIs.SetContents(Name, Gold);
+
     }
 
 
