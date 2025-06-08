@@ -5,6 +5,7 @@ public class MagicTower : PoolAble, ITower
     public int AttackPower { get; set; } = 50;
     public int AttackSpeed { get; set; } = 2;
     public float AttackRange { get; set; } = 2.25f;
+    public string TowerName { get; set; } = "MagicTower";
 
     public GameObject hitEffectPrefab;
 

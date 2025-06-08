@@ -6,6 +6,8 @@ public class NormalTower : PoolAble, ITower
     public int AttackSpeed { get; set; } = 2;
     public float AttackRange { get; set; } = 2.25f;
 
+    public string TowerName { get; set; } = "NormalTower";
+
     [SerializeField] private string[] upgradeTowerPoolNames;
 
     public GameObject normalTowerBullet;

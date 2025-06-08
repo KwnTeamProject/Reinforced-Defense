@@ -22,6 +22,9 @@ public class MainSystem : MonoBehaviour
     public bool isStageStarted = false;
     public bool isPaused = false;
 
+    public GameObject resultWindow;
+    private ResultWindow resultWindowComponent;
+
     private void Awake()
     {
         MainSystem.mainSystemInstance = this;
@@ -29,7 +32,7 @@ public class MainSystem : MonoBehaviour
 
     private void Start()
     {
-        
+        resultWindowComponent = GetComponent<ResultWindow>();
     }
 
     private void Update()
@@ -70,7 +73,16 @@ public class MainSystem : MonoBehaviour
     public void GameEnd()
     {
         if (currentEnemyCount == maxEnemyCount)
-            Exit();
+        {
+            resultWindow.SetActive(true);
+            resultWindowComponent.PopupWindow(false, remainingTime, 0, 0);
+            
+        }
+        else if(remainingTime <= 0)
+        {
+            resultWindow.SetActive(true);
+            resultWindowComponent.PopupWindow(true, remainingTime, 0, 0);
+        }
     }
 
     private void UpdateTimerText()
