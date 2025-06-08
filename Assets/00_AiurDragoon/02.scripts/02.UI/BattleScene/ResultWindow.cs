@@ -28,7 +28,7 @@ public class ResultWindow : MonoBehaviour
             RecordText.text = Rtxt;
 
         }
-        else
+        else if(!isWin)
         {
             TitleText.text = "DEFEAT";
             TitleText.color = new Color(0.43f, 0, 0.55f);

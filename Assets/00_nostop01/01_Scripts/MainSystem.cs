@@ -21,7 +21,9 @@ public class MainSystem : MonoBehaviour
     [Header("잡다구리 변수")]
     public bool isStageStarted = false;
     public bool isPaused = false;
+    public bool isGameEnd = false;
 
+    public AudioSource BGM;
     public GameObject resultWindow;
     private ResultWindow resultWindowComponent;
 
@@ -32,20 +34,28 @@ public class MainSystem : MonoBehaviour
 
     private void Start()
     {
-        resultWindowComponent = GetComponent<ResultWindow>();
+        resultWindowComponent = resultWindow.GetComponent<ResultWindow>();
     }
 
     private void Update()
     {
         GameEnd();
-        TakePause();
+        BGMController();
 
         UpdateEnemyCountText();
 
-        if (!isStageStarted || isPaused) return;
+        if (!isStageStarted || isPaused || isGameEnd) return;
 
         remainingTime -= Time.deltaTime;
         UpdateTimerText();
+    }
+
+    public void BGMController()
+    {
+        if(isGameEnd)
+        {
+            BGM.Pause();
+        }
     }
 
     public void StartStage()
@@ -64,10 +74,7 @@ public class MainSystem : MonoBehaviour
 
     public void TakePause()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            isPaused = !isPaused;
-        }
+        isPaused = !isPaused;
     }
 
     public void GameEnd()
@@ -76,12 +83,13 @@ public class MainSystem : MonoBehaviour
         {
             resultWindow.SetActive(true);
             resultWindowComponent.PopupWindow(false, remainingTime, 0, 0);
-            
+            isGameEnd = true;
         }
         else if(remainingTime <= 0)
         {
             resultWindow.SetActive(true);
             resultWindowComponent.PopupWindow(true, remainingTime, 0, 0);
+            isGameEnd = true;
         }
     }
 

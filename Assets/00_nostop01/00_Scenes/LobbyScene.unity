@@ -1015,6 +1015,7 @@ GameObject:
   - component: {fileID: 148076802}
   - component: {fileID: 148076801}
   - component: {fileID: 148076800}
+  - component: {fileID: 148076803}
   m_Layer: 5
   m_Name: MainCanvas
   m_TagString: Untagged
@@ -1108,6 +1109,20 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &148076803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148076798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8486b8383facef4fab520669c8f6aa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeImage: {fileID: 1658918478}
+  fadeDuration: 1
 --- !u!1 &180195665
 GameObject:
   m_ObjectHideFlags: 0
@@ -9727,9 +9742,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1746691127}
-        m_TargetAssemblyTypeName: BattleStartButtton, Assembly-CSharp
-        m_MethodName: StartBattleScene
+      - m_Target: {fileID: 148076803}
+        m_TargetAssemblyTypeName: ButtonToLoadScene, Assembly-CSharp
+        m_MethodName: OnFadeButtonClicked
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

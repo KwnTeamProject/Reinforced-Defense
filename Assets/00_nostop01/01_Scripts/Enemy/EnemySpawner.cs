@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void Update()
     {
-        if (MainSystem.mainSystemInstance.isPaused)
+        if (MainSystem.mainSystemInstance.isGameEnd || MainSystem.mainSystemInstance.isPaused)
             return;
 
         if (spawnCooldown <= 0f)

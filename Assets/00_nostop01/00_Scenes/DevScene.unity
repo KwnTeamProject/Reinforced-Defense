@@ -2563,7 +2563,9 @@ MonoBehaviour:
   enemyText: {fileID: 1917584535}
   isStageStarted: 1
   isPaused: 0
-  resultWindow: {fileID: 0}
+  isGameEnd: 0
+  BGM: {fileID: 159588069}
+  resultWindow: {fileID: 2039110819}
 --- !u!4 &679523202
 Transform:
   m_ObjectHideFlags: 0

@@ -27,6 +27,9 @@ public class MagicTower : PoolAble, ITower
 
     void Update()
     {
+        if (MainSystem.mainSystemInstance.isPaused || MainSystem.mainSystemInstance.isGameEnd)
+            return;
+
         if (attackCooldown <= 0f)
         {
             Attack();
