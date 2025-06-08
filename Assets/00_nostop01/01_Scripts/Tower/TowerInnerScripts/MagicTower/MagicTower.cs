@@ -1,20 +1,19 @@
 using UnityEngine;
 
-public class NormalTower : PoolAble, ITower
+public class MagicTower : PoolAble, ITower
 {
-    public int AttackPower { get; set; } = 40;
+    public int AttackPower { get; set; } = 50;
     public int AttackSpeed { get; set; } = 2;
     public float AttackRange { get; set; } = 2.25f;
 
-    [SerializeField] private string[] upgradeTowerPoolNames;
-
-    public GameObject normalTowerBullet;
+    public GameObject hitEffectPrefab;
 
     private Material defaultMat;
     public Material selectedMat;
 
     private SpriteRenderer spriteRenderer;
 
+    private DamageType damageType = DamageType.Magical;
     private float attackCooldown = 0f;
 
     public Transform GetTransform() => transform;
@@ -52,7 +51,11 @@ public class NormalTower : PoolAble, ITower
     {
         spriteRenderer.material = defaultMat;
     }
-    
+
+    public void Upgrade()
+    {
+
+    }
 
     public void Attack()
     {
@@ -62,37 +65,23 @@ public class NormalTower : PoolAble, ITower
         if (hits.Length == 0)
             return;
 
-        // 2. 가장 먼저 들어온 적(리스트 첫 번째)을 우선 타겟
-        Transform target = hits[0].transform;
+        // 2. 공격 시점 기준 공격 범위 내 모든 적에게 공격 실행
+        for (int i = 0; i < hits.Length; i++)
+        {
+            hits[i].GetComponent<EnemyHealth>().TakeDamage(AttackPower, damageType);
+
+            Vector3 hitPosition = hits[i].transform.position;
+            GameObject effect = Instantiate(hitEffectPrefab, hitPosition, Quaternion.identity);
+        }
 
         // 3. 총알 생성 및 타겟 설정
-        GameObject bullet = Instantiate(normalTowerBullet, transform.position, Quaternion.identity);
 
-        NormalBullet bulletComp = bullet.GetComponent<NormalBullet>();
-        if (bulletComp != null)
-        {
-            bulletComp.SetTarget(target);
-            bulletComp.SetDamage(AttackPower);
-        }
-    }
-
-    public void Upgrade()
-    {
-        // 0, 1, 2 중 랜덤 선택
-        //int randomIndex = Random.Range(0, 3); // upper bound는 포함되지 않으므로 0~2
-        int randomIndex = Random.Range(0, 2); // 임시 테스트용
-        string selectedPoolName = upgradeTowerPoolNames[randomIndex];
-
-        Debug.Log($"{name} 업그레이드! 선택된 업그레이드 번호: {randomIndex}");
-
-        TowerManager.Instance.UpgradeTower(selectedPoolName);
-        Pool.Release(this.gameObject);
     }
 
     // 오브젝트가 활성화될 때 TowerManager에 등록
     private void OnEnable()
     {
-        TowerManager.Instance.RegisterTower(this);
+
     }
 
     // 오브젝트가 비활성화될 때 TowerManager에서 해제
