@@ -1,6 +1,10 @@
 using System.Collections;
 using UnityEngine;
 
+// by 이상협: UI
+using UnityEngine.UI;
+// = = = = = = =
+
 public enum DamageType
 {
     Physical,
@@ -23,6 +27,10 @@ public class EnemyHealth : PoolAble, IEnemy
 
     private SpriteRenderer spriteRenderer;
 
+    // by 이상협: HP bar
+    [SerializeField] Slider HPbar;
+    // = = = = = = = = =
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -43,6 +51,13 @@ public class EnemyHealth : PoolAble, IEnemy
         int finalDamage = Mathf.Max(Mathf.RoundToInt(reducedByResistance - defense), 1);  // 최소 1 보장
 
         currentHealth -= finalDamage;
+
+        // by 이상협: HP bar value Setting
+        
+        float HPrate = (float)currentHealth / (float)maxHealth;
+        HPbar.value = HPrate;
+        Debug.LogFormat("current:{0} , max:{1} , rate:{2}", currentHealth, maxHealth, HPrate);
+        // = = = = = = = = = = = = = = = =
 
         Debug.Log($"[{damageType}] 속성 공격: 최종 데미지 {finalDamage}, 남은 체력: {currentHealth}");
 
