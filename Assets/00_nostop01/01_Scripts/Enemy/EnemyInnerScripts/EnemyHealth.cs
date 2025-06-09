@@ -21,8 +21,8 @@ public class EnemyHealth : PoolAble, IEnemy
     public int defense { get; set; } = 10;
 
     // 加己喊 郴己 (0.0f = 公历亲, 1.0f = 肯傈 搁开)
-    public float physicalResistance { get; set; } = 0.5f;
-    public float magicalResistance { get; set; } = 1.0f;
+    public float physicalResistance { get; set; } = 0.1f;
+    public float magicalResistance { get; set; } = 0.5f;
     public float elementalResistance { get; set; } = 1.0f;
 
     private SpriteRenderer spriteRenderer;
