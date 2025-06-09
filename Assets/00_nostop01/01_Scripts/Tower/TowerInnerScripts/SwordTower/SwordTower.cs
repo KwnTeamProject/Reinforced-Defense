@@ -7,6 +7,8 @@ public class SwordTower : PoolAble, ITower
     public int AttackSpeed { get; set; } = 2;
     public float AttackRange { get; set; } = 2.25f;
 
+    public string TowerName { get; set; } = "SwordTower";
+
     public GameObject hitEffectPrefab;
 
     private Material defaultMat;
@@ -27,6 +29,9 @@ public class SwordTower : PoolAble, ITower
 
     void Update()
     {
+        if (MainSystem.mainSystemInstance.isPaused || MainSystem.mainSystemInstance.isGameEnd)
+            return;
+
         if (attackCooldown <= 0f)
         {
             Attack();

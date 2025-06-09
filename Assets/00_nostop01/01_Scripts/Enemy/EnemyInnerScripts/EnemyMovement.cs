@@ -53,7 +53,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
-        if (MainSystem.mainSystemInstance.isPaused)
+        if (MainSystem.mainSystemInstance.isPaused || MainSystem.mainSystemInstance.isGameEnd)
             return;
 
         if (targetPositions.Count == 0) return;

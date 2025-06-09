@@ -6,6 +6,8 @@ public class NormalTower : PoolAble, ITower
     public int AttackSpeed { get; set; } = 2;
     public float AttackRange { get; set; } = 2.25f;
 
+    public string TowerName { get; set; } = "NormalTower";
+
     [SerializeField] private string[] upgradeTowerPoolNames;
 
     public GameObject normalTowerBullet;
@@ -27,6 +29,9 @@ public class NormalTower : PoolAble, ITower
 
     void Update()
     {
+        if (MainSystem.mainSystemInstance.isPaused || MainSystem.mainSystemInstance.isGameEnd)
+            return;
+
         if (attackCooldown <= 0f)
         {
             Attack();
@@ -80,7 +85,7 @@ public class NormalTower : PoolAble, ITower
     {
         // 0, 1, 2 중 랜덤 선택
         //int randomIndex = Random.Range(0, 3); // upper bound는 포함되지 않으므로 0~2
-        int randomIndex = 0; // 임시 테스트용
+        int randomIndex = Random.Range(0, 2); // 임시 테스트용
         string selectedPoolName = upgradeTowerPoolNames[randomIndex];
 
         Debug.Log($"{name} 업그레이드! 선택된 업그레이드 번호: {randomIndex}");

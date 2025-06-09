@@ -4,9 +4,9 @@ using Defines;
 public class BattleStartButtton : MonoBehaviour
 {
 
-    public void StartBattleScene()
+    public void StartBattleScene(string SceneName)
     {
-        SceneLoader.SceneLoaderInstance.ChangeScene("StartBattleScene");
+        SceneLoader.SceneLoaderInstance.ChangeScene(SceneName);
     }
 
 

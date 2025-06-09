@@ -5,7 +5,9 @@ public interface ITower
     int AttackPower { get; set; }
     int AttackSpeed { get; set; }
     float AttackRange {  get; set; }
-    
+ 
+    string TowerName { get; set; }  
+
     void OnSelected();
     void OnDeselected();
     void Upgrade();
