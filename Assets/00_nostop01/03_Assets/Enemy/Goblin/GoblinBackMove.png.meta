@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 42b2251daa216984b8309b36f05c9620
+guid: 5b12d42b9b7938340b7284b29ad2bd76
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8698800345123575220
-    second: CutScene1_0
+      213: -8417186006227641860
+    second: GoblinBackMove_0
+  - first:
+      213: 628534688765771247
+    second: GoblinBackMove_1
+  - first:
+      213: -474059573019729314
+    second: GoblinBackMove_2
+  - first:
+      213: -3142643557005692012
+    second: GoblinBackMove_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -113,13 +122,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CutScene1_0
+      name: GoblinBackMove_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1310
-        height: 873
+        x: 28
+        y: 343
+        width: 206
+        height: 328
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +137,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4b5d22f53d858b870800000000000000
-      internalID: 8698800345123575220
+      spriteID: cf9996a6ce5203b80800000000000000
+      internalID: -8417186006227641860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBackMove_1
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 344
+        width: 206
+        height: 327
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fedf4e428f009b800800000000000000
+      internalID: 628534688765771247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBackMove_2
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 343
+        width: 204
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5229cb745dcb69f0800000000000000
+      internalID: -474059573019729314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinBackMove_3
+      rect:
+        serializedVersion: 2
+        x: 797
+        y: 343
+        width: 205
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4937109d5561364d0800000000000000
+      internalID: -3142643557005692012
       vertices: []
       indices: 
       edges: []
@@ -148,7 +223,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      CutScene1_0: 8698800345123575220
+      GoblinBackMove_0: -8417186006227641860
+      GoblinBackMove_1: 628534688765771247
+      GoblinBackMove_2: -474059573019729314
+      GoblinBackMove_3: -3142643557005692012
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

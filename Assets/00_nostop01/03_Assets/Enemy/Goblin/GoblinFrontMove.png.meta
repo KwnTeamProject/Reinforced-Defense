@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 42b2251daa216984b8309b36f05c9620
+guid: eb01e4351e8f96d42b5f505ef99fb1ed
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8698800345123575220
-    second: CutScene1_0
+      213: -9110661684130098864
+    second: GoblinFrontMove_0
+  - first:
+      213: -3783478576754811736
+    second: GoblinFrontMove_1
+  - first:
+      213: -6857654254097704989
+    second: GoblinFrontMove_2
+  - first:
+      213: -7112308900552725592
+    second: GoblinFrontMove_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -113,23 +122,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CutScene1_0
+      name: GoblinFrontMove_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1310
-        height: 873
+        x: 34
+        y: 295
+        width: 216
+        height: 345
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4b5d22f53d858b870800000000000000
-      internalID: 8698800345123575220
+      spriteID: 051d9a8f77d609180800000000000000
+      internalID: -9110661684130098864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinFrontMove_1
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 295
+        width: 214
+        height: 344
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ac9a39b7426e7bc0800000000000000
+      internalID: -3783478576754811736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinFrontMove_2
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 296
+        width: 215
+        height: 344
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e75f001ac7b4d0a0800000000000000
+      internalID: -6857654254097704989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GoblinFrontMove_3
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 296
+        width: 219
+        height: 344
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8aba4b1dcb00c4d90800000000000000
+      internalID: -7112308900552725592
       vertices: []
       indices: 
       edges: []
@@ -138,7 +213,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c84076a7528530b4580df70fe93125f2
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +223,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      CutScene1_0: 8698800345123575220
+      GoblinFrontMove_0: -9110661684130098864
+      GoblinFrontMove_1: -3783478576754811736
+      GoblinFrontMove_2: -6857654254097704989
+      GoblinFrontMove_3: -7112308900552725592
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -46,16 +46,15 @@ public class TowerManager : PoolAble
     {
         TowerPosSet();
 
-        // 마우스 입력
-        if (Input.GetMouseButtonDown(0))
-        {
-            HandleInput(Input.mousePosition);
-        }
-
-        // 터치 입력
+        // 모바일 터치 우선 처리
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             HandleInput(Input.GetTouch(0).position);
+        }
+
+        else if (Input.GetMouseButtonDown(0))
+        {
+            HandleInput(Input.mousePosition);
         }
     }
 
