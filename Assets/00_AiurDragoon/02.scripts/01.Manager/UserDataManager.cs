@@ -91,7 +91,6 @@ public class UserDataManager : MonoBehaviour
 
 
 
-
     // Save & Load
     void SaveData()
     {
@@ -108,6 +107,12 @@ public class UserDataManager : MonoBehaviour
 
         #endregion 최고기록
 
+        //기타 저장 데이터
+
+        //  첫 플레이 여부
+        PlayerPrefs.SetInt("FirstPlay", (firstPlay) ? 1 : 0);
+
+
     }
 
     void LoadData()
@@ -123,6 +128,14 @@ public class UserDataManager : MonoBehaviour
 
         HighRecord = PlayerPrefs.GetFloat("HighRecord");
 
+        if(PlayerPrefs.GetInt("FirstPlay") == 1)
+        {
+            firstPlay = true;
+        }
+        else
+        {
+            firstPlay= false;
+        }
     }
 
 
