@@ -10,7 +10,7 @@ public class StartCutSceneUI : MonoBehaviour
     [SerializeField] Image ShadowImg;
 
     [SerializeField] Image SceneImage;
-    [SerializeField] TMP_Text SceneText;
+    [SerializeField] Text SceneText;
 
     [SerializeField] float fadeTime = 0.5f;
 
@@ -22,77 +22,74 @@ public class StartCutSceneUI : MonoBehaviour
     float Ftime;
     int NowSceneNum;
 
+    bool cutScenePlaying = false;
+
     private void Start()
     {
-        
+        for(int i = 0; i < transform.childCount; ++i)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
     }
 
-
-    public void StartCutScene()
+    private void OnEnable()
     {
+        PlayCutScene();
+    }
 
-        SetShadowAlpha(1.0f);
-        SceneImage.sprite = SceneImageArray[0];
-
-
-        Ftime = 0f;
-        NowSceneNum = 0;
-
-        StartCoroutine(FadeIn());
+    void PlayCutScene()
+    {
+        StartCoroutine(StartCutScene());
 
     }
 
     public void Update()
     {
 
-        if(NowSceneNum > CutSceneCount - 1)
-        {   
-            gameObject.SetActive(false);
+        if(!cutScenePlaying)
+        {
             return;
         }
 
         Ftime += Time.deltaTime;
+        //Debug.Log(Ftime);
 
-        if ( Ftime > SceneTime[NowSceneNum])
+        if(Ftime > SceneTime[NowSceneNum])
         {
-            StartCoroutine(FadeOut());
-            
-            if(Ftime > SceneTime[NowSceneNum] + fadeTime)
-            {
-                SceneImage.sprite = SceneImageArray[NowSceneNum];
-                SceneText.text = SceneTextArray[NowSceneNum];
-                StartCoroutine(FadeIn());
+            ++NowSceneNum;
 
-                NowSceneNum++;
-                Ftime = 0f;
+            if (NowSceneNum >= CutSceneCount)
+            {
+                StopCutScene();
+                return;
             }
 
+            SceneImage.sprite = SceneImageArray[NowSceneNum];
+            SceneText.text = SceneTextArray[NowSceneNum];
             
+            Ftime = 0f;
 
         }
+
+    }
+
+    void StopCutScene()
+    {
+        //Debug.Log("Finishing CutScene");
+
+        cutScenePlaying = false;
+
+        StartCoroutine(FinishCutScene());
+
+    }
+
+
+    IEnumerator StartCutScene()
+    {
+        //Debug.Log("StartCutScene");
+
+        ShadowImg.gameObject.SetActive(true);
         
-    }
-
-
-    // 알파값 0으로
-    IEnumerator FadeIn()
-    {
-        Debug.Log("페이드 인");
-        float t = fadeTime;
-        while (t > 0f)
-        {
-            t -= Time.deltaTime;
-            float alpha = t / fadeTime;
-            SetShadowAlpha(alpha);
-            yield return null;
-        }
-        SetShadowAlpha(0f);
-    }
-
-    //알파값 1로
-    IEnumerator FadeOut()
-    {
-        Debug.Log("페이드 아웃");
         float t = 0;
         while (t < fadeTime)
         {
@@ -102,12 +99,82 @@ public class StartCutSceneUI : MonoBehaviour
             yield return null;
         }
         SetShadowAlpha(1f);
+
+        for (int i = 0; i < transform.childCount; ++i)
+        {
+            transform.GetChild(i).gameObject.SetActive(true);
+        }
+
+        SceneImage.sprite = SceneImageArray[0];
+        SceneText.text = SceneTextArray[0];
+
+        t = fadeTime;
+        while (t > 0)
+        {
+            t -= Time.deltaTime;
+            float alpha = t / fadeTime;
+            SetShadowAlpha(alpha);
+            yield return null;
+        }
+        SetShadowAlpha(0f);
+
+        cutScenePlaying = true;
+
+        Ftime = 0f;
+        NowSceneNum = 0;
+
     }
+
+    IEnumerator FinishCutScene()
+    {
+
+        //Debug.Log("FinishCutScene");
+
+        float t = 0;
+        while (t < fadeTime)
+        {
+            t += Time.deltaTime;
+            float alpha = t / fadeTime;
+            SetShadowAlpha(alpha);
+            yield return null;
+        }
+        SetShadowAlpha(1f);
+
+        for (int i = 0; i < transform.childCount; ++i)
+        {
+
+            GameObject go = transform.GetChild(i).gameObject;
+            if (go.name == "FadeShadow")
+            {
+                continue;
+            }
+            go.SetActive(false);
+        }
+
+        SceneImage.sprite = SceneImageArray[0];
+        SceneText.text = SceneTextArray[0];
+
+        t = fadeTime;
+        while (t > 0)
+        {
+            t -= Time.deltaTime;
+            float alpha = t / fadeTime;
+            SetShadowAlpha(alpha);
+            yield return null;
+        }
+        SetShadowAlpha(0f);
+
+        UserDataManager.UserDataManagerInstance.firstPlay = false;
+
+        gameObject.SetActive(false);
+    }
+
 
     void SetShadowAlpha(float alpha)
     {
         Color c = ShadowImg.color;
         c.a = Mathf.Clamp01(alpha);
+        //Debug.Log("Alpha :" + c.a.ToString());
         ShadowImg.color = c;
     }
 
