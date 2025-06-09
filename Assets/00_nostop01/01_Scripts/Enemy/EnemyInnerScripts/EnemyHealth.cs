@@ -78,6 +78,8 @@ public class EnemyHealth : PoolAble, IEnemy
     {
         Debug.Log("적이 사망했습니다.");
 
+        MainSystem.mainSystemInstance.PlusProduct(1);
+
         // 사망 처리 로직
         currentHealth = maxHealth;
         spriteRenderer.color = Color.white;

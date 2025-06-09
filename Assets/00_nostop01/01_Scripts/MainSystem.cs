@@ -11,7 +11,9 @@ public class MainSystem : MonoBehaviour
     public int stageInfo;
     public float remainingTime;
     public float stageDuration;
+    public float byProductCount;
     [SerializeField] TMP_Text timerText;
+    [SerializeField] TMP_Text productText;
 
     [Header("몬스터 정보")]
     public int currentEnemyCount;
@@ -34,6 +36,7 @@ public class MainSystem : MonoBehaviour
 
     private void Start()
     {
+        byProductCount = 0;
         resultWindowComponent = resultWindow.GetComponent<ResultWindow>();
     }
 
@@ -48,6 +51,16 @@ public class MainSystem : MonoBehaviour
 
         remainingTime -= Time.deltaTime;
         UpdateTimerText();
+    }
+
+    public void PlusProduct(float productCount)
+    {
+        byProductCount += productCount;
+    }
+
+    public void MinusProduct(float productCount)
+    {
+        byProductCount -= productCount;
     }
 
     public void BGMController()
@@ -101,6 +114,8 @@ public class MainSystem : MonoBehaviour
         float secondsWithFraction = remainingTime % 60f;
 
         timerText.text = $"{minutes:D2}:{secondsWithFraction:00.00}";
+
+        productText.text = ": " + byProductCount.ToString();
     }
 
     public void UpdateEnemyCountText()

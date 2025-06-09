@@ -12,6 +12,7 @@ public class TowerInfoUI : MonoBehaviour
     public GameObject swordIcon;
     public GameObject magicIcon;
     public GameObject fairyIcon;
+    public GameObject upgradeText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,6 +23,7 @@ public class TowerInfoUI : MonoBehaviour
         swordIcon.SetActive(false);
         fairyIcon.SetActive(false);
         magicIcon.SetActive(false);
+        upgradeText.SetActive(false);
     }
 
     // Update is called once per frame
@@ -48,6 +50,7 @@ public class TowerInfoUI : MonoBehaviour
             swordIcon.SetActive(false);
             fairyIcon.SetActive(false);
             magicIcon.SetActive(false);
+            upgradeText.SetActive(true);
         }
 
         else if (TowerManager.Instance.selectedTower.TowerName == "SwordTower")
@@ -58,6 +61,7 @@ public class TowerInfoUI : MonoBehaviour
             normalIcon.SetActive(false);
             fairyIcon.SetActive(false);
             magicIcon.SetActive(false);
+            upgradeText.SetActive(false);
         }
 
         else if (TowerManager.Instance.selectedTower.TowerName == "MagicTower")
@@ -68,6 +72,7 @@ public class TowerInfoUI : MonoBehaviour
             normalIcon.SetActive(false);
             fairyIcon.SetActive(false);
             swordIcon.SetActive(false);
+            upgradeText.SetActive(false);
         }
 
         else if (TowerManager.Instance.selectedTower.TowerName == "FairyTower")
@@ -78,6 +83,7 @@ public class TowerInfoUI : MonoBehaviour
             normalIcon.SetActive(false);
             swordIcon.SetActive(false);
             magicIcon.SetActive(false);
+            upgradeText.SetActive(false);
         }
 
         else if (TowerManager.Instance.selectedTower == null)
@@ -88,6 +94,7 @@ public class TowerInfoUI : MonoBehaviour
             normalIcon.SetActive(false);
             fairyIcon.SetActive(false);
             magicIcon.SetActive(false);
+            upgradeText.SetActive(false);
         }
     }
 }

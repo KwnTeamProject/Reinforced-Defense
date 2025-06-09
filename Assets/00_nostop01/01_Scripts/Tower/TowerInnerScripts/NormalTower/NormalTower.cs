@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class NormalTower : PoolAble, ITower
 {
-    public int AttackPower { get; set; } = 40;
-    public int AttackSpeed { get; set; } = 2;
+    public int AttackPower { get; set; } = 20;
+    public int AttackSpeed { get; set; } = 1;
     public float AttackRange { get; set; } = 2.25f;
 
+    private float needUpgradeProductCount = 10;
     public string TowerName { get; set; } = "NormalTower";
+
 
     [SerializeField] private string[] upgradeTowerPoolNames;
 
@@ -25,6 +27,7 @@ public class NormalTower : PoolAble, ITower
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         defaultMat = spriteRenderer.material;
+        needUpgradeProductCount = 10;
     }
 
     void Update()
@@ -83,6 +86,11 @@ public class NormalTower : PoolAble, ITower
 
     public void Upgrade()
     {
+        if (MainSystem.mainSystemInstance.byProductCount < needUpgradeProductCount)
+            return;
+
+        MainSystem.mainSystemInstance.MinusProduct(needUpgradeProductCount);
+
         // 0, 1, 2 중 랜덤 선택
         //int randomIndex = Random.Range(0, 3); // upper bound는 포함되지 않으므로 0~2
         int randomIndex = Random.Range(0, 2); // 임시 테스트용
