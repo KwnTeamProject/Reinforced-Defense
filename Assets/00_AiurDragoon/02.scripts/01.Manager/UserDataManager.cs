@@ -26,10 +26,12 @@ public class UserDataManager : MonoBehaviour
 
     float TmpVolume = 0.5f, TmpBrightness = 0.5f;
 
+    public bool firstPlay { get; set; } = true;
 
     private void Awake()
     {
         UserDataManagerInstance = this;
+        
     }
 
     private void Start()
