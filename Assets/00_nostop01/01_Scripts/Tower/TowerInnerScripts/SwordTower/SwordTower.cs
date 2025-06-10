@@ -3,11 +3,11 @@ using static UnityEngine.GraphicsBuffer;
 
 public class SwordTower : PoolAble, ITower
 {
-    public int AttackPower { get; set; } = 50;
+    public int AttackPower { get; set; } = 20;
     public int AttackSpeed { get; set; } = 2;
     public float AttackRange { get; set; } = 2.25f;
 
-    public string TowerName { get; set; } = "SwordTower";
+    public string TowerName { get; set; } = "Sword Tower";
 
     public GameObject hitEffectPrefab;
 
@@ -18,6 +18,8 @@ public class SwordTower : PoolAble, ITower
 
     private DamageType damageType = DamageType.Physical;
     private float attackCooldown = 0f;
+
+    public AudioSource swordAttackSound;
 
     public Transform GetTransform() => transform;
 
@@ -35,7 +37,7 @@ public class SwordTower : PoolAble, ITower
         if (attackCooldown <= 0f)
         {
             Attack();
-            attackCooldown = 1f / AttackSpeed; // 공격 속도 적용
+            attackCooldown = AttackSpeed; // 공격 속도 적용
         }
         else
         {
@@ -80,8 +82,9 @@ public class SwordTower : PoolAble, ITower
             GameObject effect = Instantiate(hitEffectPrefab, hitPosition, Quaternion.identity);
         }
 
-        // 3. 총알 생성 및 타겟 설정
-        
+        swordAttackSound.Play();
+
+
     }
 
     // 오브젝트가 활성화될 때 TowerManager에 등록

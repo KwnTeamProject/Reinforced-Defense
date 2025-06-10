@@ -1,18 +1,22 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NormalTower : PoolAble, ITower
 {
-    public int AttackPower { get; set; } = 20;
+    public int AttackPower { get; set; } = 30;
     public int AttackSpeed { get; set; } = 1;
-    public float AttackRange { get; set; } = 2.25f;
+    public float AttackRange { get; set; } = 2.5f;
 
     private float needUpgradeProductCount = 10;
-    public string TowerName { get; set; } = "NormalTower";
+    public string TowerName { get; set; } = "Normal Tower";
 
 
     [SerializeField] private string[] upgradeTowerPoolNames;
 
     public GameObject normalTowerBullet;
+
+    public GameObject needToProduct;
+    public Text needToProductText;
 
     private Material defaultMat;
     public Material selectedMat;
@@ -25,6 +29,9 @@ public class NormalTower : PoolAble, ITower
 
     void Awake()
     {
+        needToProduct = GameObject.Find("DonotHaveProductPanel");
+        needToProductText = GameObject.Find("DonotHaveProductText").GetComponent<Text>();
+
         spriteRenderer = GetComponent<SpriteRenderer>();
         defaultMat = spriteRenderer.material;
         needUpgradeProductCount = 10;
@@ -87,7 +94,14 @@ public class NormalTower : PoolAble, ITower
     public void Upgrade()
     {
         if (MainSystem.mainSystemInstance.byProductCount < needUpgradeProductCount)
+        {
+            float sum = needUpgradeProductCount - MainSystem.mainSystemInstance.byProductCount;
+
+            needToProduct.SetActive(true);
+            needToProductText.text = "부산물이 부족합니다.\n" + "(부족한 부산물 수 : " + Mathf.Abs(sum).ToString() + ")";
+
             return;
+        }
 
         MainSystem.mainSystemInstance.MinusProduct(needUpgradeProductCount);
 

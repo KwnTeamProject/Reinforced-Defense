@@ -9,6 +9,7 @@ public class MainSystem : MonoBehaviour
 
     [Header("스테이지 정보")]
     public int stageInfo;
+    public float maxTime = 360;
     public float remainingTime;
     public float stageDuration;
     public float byProductCount;
@@ -36,7 +37,8 @@ public class MainSystem : MonoBehaviour
 
     private void Start()
     {
-        byProductCount = 0;
+        remainingTime = maxTime;
+        byProductCount = 10;
         resultWindowComponent = resultWindow.GetComponent<ResultWindow>();
     }
 
@@ -51,16 +53,44 @@ public class MainSystem : MonoBehaviour
 
         remainingTime -= Time.deltaTime;
         UpdateTimerText();
+        GameLevelUp();
+    }
+
+    public void GameLevelUp()
+    {
+        if(remainingTime < 300)
+        {
+            EnemySpawner.Instance.guardSpawnTimer = 3;
+            EnemySpawner.Instance.goblinSpawnTimer = 1.5f;
+        }
+
+        if(remainingTime < 240)
+        {
+            EnemySpawner.Instance.guardSpawnTimer = 2;
+            EnemySpawner.Instance.goblinSpawnTimer = 1;
+        }
     }
 
     public void PlusProduct(float productCount)
     {
         byProductCount += productCount;
+        UpdateProductText();
     }
 
     public void MinusProduct(float productCount)
     {
         byProductCount -= productCount;
+        UpdateProductText();
+    }
+
+    private void UpdateProductText()
+    {
+        if (productText == null) return;
+
+        if (byProductCount <= 0)
+            productText.text = ": 0";
+        else
+            productText.text = ": " + byProductCount.ToString();
     }
 
     public void BGMController()
@@ -95,13 +125,13 @@ public class MainSystem : MonoBehaviour
         if (currentEnemyCount == maxEnemyCount)
         {
             resultWindow.SetActive(true);
-            resultWindowComponent.PopupWindow(false, remainingTime, 0, 0);
+            resultWindowComponent.PopupWindow(false, maxTime, 0, 0);
             isGameEnd = true;
         }
         else if(remainingTime <= 0)
         {
             resultWindow.SetActive(true);
-            resultWindowComponent.PopupWindow(true, remainingTime, 0, 0);
+            resultWindowComponent.PopupWindow(true, maxTime, 0, 0);
             isGameEnd = true;
         }
     }
@@ -114,8 +144,6 @@ public class MainSystem : MonoBehaviour
         float secondsWithFraction = remainingTime % 60f;
 
         timerText.text = $"{minutes:D2}:{secondsWithFraction:00.00}";
-
-        productText.text = ": " + byProductCount.ToString();
     }
 
     public void UpdateEnemyCountText()

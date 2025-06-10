@@ -153,6 +153,8 @@ public class TowerManager : PoolAble
             }
         }
 
+        MainSystem.mainSystemInstance.MinusProduct(5);
+
         Debug.Log("모든 위치가 이미 타워로 채워져 있습니다.");
 
     }

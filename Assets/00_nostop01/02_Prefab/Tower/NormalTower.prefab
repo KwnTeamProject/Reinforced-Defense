@@ -108,6 +108,8 @@ MonoBehaviour:
   - FairyTower
   normalTowerBullet: {fileID: 4688415169975083374, guid: 76c614cf6071d1d4291cd3cb60163270,
     type: 3}
+  needToProduct: {fileID: 0}
+  needToProductText: {fileID: 0}
   selectedMat: {fileID: 2100000, guid: fa3f741751e1bb54cbc02a40cd5209ba, type: 2}
 --- !u!61 &-9158984825113272510
 BoxCollider2D:

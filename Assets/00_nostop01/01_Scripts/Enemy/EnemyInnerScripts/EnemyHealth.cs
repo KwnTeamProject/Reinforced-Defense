@@ -97,6 +97,8 @@ public class EnemyHealth : PoolAble, IEnemy
 
         // 사망 처리 로직
         currentHealth = maxHealth;
+        float HPrate = (float)currentHealth / (float)maxHealth;
+        HPbar.value = HPrate;
         spriteRenderer.color = Color.white;
         Pool.Release(this.gameObject);
     }

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public static EnemySpawner Instance;
+
     [Header("가드")]
     public float guardSpawnCooldown = 3f;
     public float guardSpawnTimer = 6f;
@@ -9,6 +11,11 @@ public class EnemySpawner : MonoBehaviour
     [Header("고블린")]
     public float goblinSpawnCooldown = 2f;
     public float goblinSpawnTimer = 4f;
+
+    public void Awake()
+    {
+        Instance = this;
+    }
 
     public void Update()
     {
@@ -28,7 +35,7 @@ public class EnemySpawner : MonoBehaviour
         if (goblinSpawnCooldown <= 0f)
         {
             GoblinSpawnEnemy();
-            goblinSpawnCooldown = guardSpawnTimer;
+            goblinSpawnCooldown = goblinSpawnTimer;
         }
         else
         {

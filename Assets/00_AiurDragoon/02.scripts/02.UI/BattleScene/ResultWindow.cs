@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,10 +10,16 @@ public class ResultWindow : MonoBehaviour
     [SerializeField] Text GoldText;
     [SerializeField] Text KillText;
 
+    public GameObject winningAudio;
+    public GameObject defeatAudio;
+
     public void PopupWindow(bool isWin, float record, int gold, int kill)
     {
         if(isWin)
         {
+            winningAudio.SetActive(true);
+
+
             TitleText.text = "VICTORY";
             TitleText.color = new Color(1, 1, 0);
            
@@ -28,8 +35,11 @@ public class ResultWindow : MonoBehaviour
             RecordText.text = Rtxt;
 
         }
+
         else if(!isWin)
         {
+            defeatAudio.SetActive(true);
+
             TitleText.text = "DEFEAT";
             TitleText.color = new Color(0.43f, 0, 0.55f);
 

@@ -42,7 +42,7 @@ public class TowerInfoUI : MonoBehaviour
         }
 
 
-        if(TowerManager.Instance.selectedTower.TowerName == "NormalTower")
+        if(TowerManager.Instance.selectedTower.TowerName == "Normal Tower")
         {
             normalIcon.SetActive(true);
 
@@ -53,7 +53,7 @@ public class TowerInfoUI : MonoBehaviour
             upgradeText.SetActive(true);
         }
 
-        else if (TowerManager.Instance.selectedTower.TowerName == "SwordTower")
+        else if (TowerManager.Instance.selectedTower.TowerName == "Sword Tower")
         {
             swordIcon.SetActive(true);
 
@@ -64,7 +64,7 @@ public class TowerInfoUI : MonoBehaviour
             upgradeText.SetActive(false);
         }
 
-        else if (TowerManager.Instance.selectedTower.TowerName == "MagicTower")
+        else if (TowerManager.Instance.selectedTower.TowerName == "Magic Tower")
         {
             magicIcon.SetActive(true);
 
@@ -75,7 +75,7 @@ public class TowerInfoUI : MonoBehaviour
             upgradeText.SetActive(false);
         }
 
-        else if (TowerManager.Instance.selectedTower.TowerName == "FairyTower")
+        else if (TowerManager.Instance.selectedTower.TowerName == "Fairy Tower")
         {
             fairyIcon.SetActive(true);
 
