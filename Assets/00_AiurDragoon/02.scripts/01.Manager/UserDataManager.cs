@@ -5,15 +5,43 @@ using UnityEngine.UI;
 
 public class UserDataManager : MonoBehaviour
 {
-
-    public static UserDataManager UserDataManagerInstance { get; private set; }
-
-
-    //임시
-    [SerializeField] Slider volSlider;
-    [SerializeField] Slider briSlider;
+    static volatile UserDataManager _uniqueInstance;
+    static volatile GameObject _uniqueObject;
 
 
+    public UserDataManager()
+    {
+        _uniqueInstance = null;
+        _uniqueObject = null;
+    }
+
+    public static UserDataManager UserDataManagerInstance
+    {
+        get
+        {
+            if (_uniqueInstance == null)
+            {
+                lock (typeof(UserDataManager))
+                {
+                    if (_uniqueInstance == null && _uniqueObject == null)
+                    {
+                        _uniqueObject = new GameObject(typeof(UserDataManager).Name, typeof(UserDataManager));
+                        _uniqueInstance = _uniqueObject.GetComponent<UserDataManager>();
+                        _uniqueInstance.Init();
+                    }
+                }
+            }
+            return _uniqueInstance;
+        }
+    }
+
+    protected virtual void Init()
+    {
+        DontDestroyOnLoad(gameObject);
+
+        LoadData();
+
+    }
 
 
     //저장 데이터
@@ -21,29 +49,13 @@ public class UserDataManager : MonoBehaviour
     public int Gold { get; private set; } = 0;
     public float HighRecord { get; private set; } = -1f;
 
-    public float Volume { get; private set; }
-    public float Brightness { get; private set; }
-
-    float TmpVolume = 0.5f, TmpBrightness = 0.5f;
+    public float Volume { get; set; }
+    public float Brightness { get; set; }
 
     public bool firstPlay { get; set; } = true;
 
-    private void Awake()
-    {
-        UserDataManagerInstance = this;
-        
-    }
-
     private void Start()
     {
-        DontDestroyOnLoad(UserDataManagerInstance);
-
-        LoadData();
-
-        GameObject MainUIs = GameObject.Find("MainUIs");
-        MainMenuUI MMUIs = MainUIs.GetComponent<MainMenuUI>();
-
-        MMUIs.SetContents(Name, Gold);
 
     }
 
@@ -65,31 +77,7 @@ public class UserDataManager : MonoBehaviour
         HighRecord = Record;
     }
 
-    //설정값
-    public void ChangeTmpVolume()
-    {
-        TmpVolume = volSlider.value;
-    }
-    public void ChangeTmpBright()
-    {
-        TmpBrightness = briSlider.value;
-    }
-    public void SaveSettings()
-    {
-        Volume = TmpVolume;
-        Brightness = TmpBrightness;
-    }
-    public void UndoSettings()
-    {
-        TmpVolume = Volume;
-        TmpBrightness = Brightness;
-
-        volSlider.value = Volume;
-        briSlider.value = Volume;
-
-    }
-
-
+    // Setting
 
     // Save & Load
     void SaveData()
@@ -112,22 +100,42 @@ public class UserDataManager : MonoBehaviour
         //  첫 플레이 여부
         PlayerPrefs.SetInt("FirstPlay", (firstPlay) ? 1 : 0);
 
+        //  설정값
+        PlayerPrefs.SetFloat("Volume", Volume);
+        PlayerPrefs.SetFloat("Bright", Brightness);
+
 
     }
 
     void LoadData()
     {
+        //데이터 검색
         if(!PlayerPrefs.HasKey("Name"))
         {
             Debug.Log("No Data Detected...");
+
+            Name = "User0000";
+            Gold = 0;
+            HighRecord = -1;
+
+            firstPlay = true;
+
+            Volume = 0.5f;
+            Brightness = 0.0f;
+
             return;
         }
+
+        //이름
         Name = PlayerPrefs.GetString("Name");
 
+        //골드
         Gold = PlayerPrefs.GetInt("Gold");
 
+        //최고기록
         HighRecord = PlayerPrefs.GetFloat("HighRecord");
 
+        //최초 플레이 여부
         if(PlayerPrefs.GetInt("FirstPlay") == 1)
         {
             firstPlay = true;
