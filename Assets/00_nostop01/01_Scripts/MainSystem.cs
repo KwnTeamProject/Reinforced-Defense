@@ -58,13 +58,13 @@ public class MainSystem : MonoBehaviour
 
     public void GameLevelUp()
     {
-        if(remainingTime < 300)
+        if(remainingTime < 120)
         {
             EnemySpawner.Instance.guardSpawnTimer = 3;
             EnemySpawner.Instance.goblinSpawnTimer = 1.5f;
         }
 
-        if(remainingTime < 240)
+        if(remainingTime < 60)
         {
             EnemySpawner.Instance.guardSpawnTimer = 2;
             EnemySpawner.Instance.goblinSpawnTimer = 1;
