@@ -10,6 +10,16 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] Text UserNameText;
     [SerializeField] Text GoldText;
     [SerializeField] Image BGImage;
+    [SerializeField] GameObject CutSceneObject;
+
+
+    private void Start()
+    {
+
+
+    }
+
+
 
     public void SetContents(string userName, int gold)
     {

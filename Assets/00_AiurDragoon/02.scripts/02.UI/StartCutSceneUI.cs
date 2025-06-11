@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
+using System;
 
 public class StartCutSceneUI : MonoBehaviour
 {
@@ -19,10 +20,23 @@ public class StartCutSceneUI : MonoBehaviour
     [SerializeField] string[] SceneTextArray;
     [SerializeField] float[] SceneTime;
 
+    [SerializeField] float TypingDelay = 0.05f;
+    [SerializeField] float TypingAfterDelay = 1.5f;
+
+
     float Ftime;
     int NowSceneNum;
 
     bool cutScenePlaying = false;
+
+    bool isTextTyping = false;
+
+    Action FinishCutSceneAction = null;
+
+
+    Coroutine typingCoroutine;
+
+
 
     private void Start()
     {
@@ -32,16 +46,88 @@ public class StartCutSceneUI : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-        PlayCutScene();
-    }
+    //private void OnEnable()
+    //{
+    //    PlayCutScene();
+    //}
 
-    void PlayCutScene()
+    public void PlayCutScene(Action onComplete)
     {
+        FinishCutSceneAction = onComplete;
         StartCoroutine(StartCutScene());
+    }
+
+    public void SkipNowOne()
+    {
+        if (isTextTyping)
+        {
+            StopCoroutine(typingCoroutine);
+            SceneText.text = SceneTextArray[NowSceneNum];
+            isTextTyping = false;
+        }
+        else if(!isTextTyping)
+        {
+            Ftime = TypingAfterDelay;
+        }
+
 
     }
+
+    // 문장 출력 애니메이션 = = = = = = = = = =
+
+    public void StartTyping(string text, float delay)
+    {
+        if (typingCoroutine != null)
+            StopCoroutine(typingCoroutine);
+
+        typingCoroutine = StartCoroutine(Typing(text, delay));
+    }
+
+    IEnumerator Typing(string text, float delay)
+    {
+
+        isTextTyping = true;
+
+        string cur = "";
+        foreach (char c in text)
+        {
+            if (c >= 0xAC00 && c <= 0xD7A3)
+            {
+                int code = c - 0xAC00;
+                int cho = code / (21 * 28);
+                int jung = (code % (21 * 28)) / 28;
+                int jong = code % 28;
+
+                cur += "ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ"[cho];
+                SceneText.text = cur;
+                yield return new WaitForSeconds(delay);
+
+                cur = cur.Substring(0, cur.Length - 1) +
+                      (char)(0xAC00 + cho * 21 * 28 + jung * 28);
+                SceneText.text = cur;
+                yield return new WaitForSeconds(delay);
+
+                if (jong != 0)
+                {
+                    cur = cur.Substring(0, cur.Length - 1) +
+                          (char)(0xAC00 + cho * 21 * 28 + jung * 28 + jong);
+                    SceneText.text = cur;
+                    yield return new WaitForSeconds(delay);
+                }
+            }
+            else
+            {
+                cur += c;
+                SceneText.text = cur;
+                yield return new WaitForSeconds(delay);
+            }
+        }
+
+        isTextTyping = false;
+
+    }
+    // = = = = = = = = = = 문장 출력 애니메이션
+
 
     public void Update()
     {
@@ -51,23 +137,28 @@ public class StartCutSceneUI : MonoBehaviour
             return;
         }
 
-        Ftime += Time.deltaTime;
-        //Debug.Log(Ftime);
-
-        if(Ftime > SceneTime[NowSceneNum])
+        if(!isTextTyping)
         {
-            ++NowSceneNum;
 
-            if (NowSceneNum >= CutSceneCount)
+            Ftime += Time.deltaTime;
+
+            if(Ftime >= TypingAfterDelay)
             {
-                StopCutScene();
-                return;
-            }
 
-            SceneImage.sprite = SceneImageArray[NowSceneNum];
-            SceneText.text = SceneTextArray[NowSceneNum];
-            
-            Ftime = 0f;
+                Ftime = 0f;
+                NowSceneNum++;
+                if (NowSceneNum >= CutSceneCount)
+                {
+                    StopCutScene();
+
+                    return;
+                }
+
+                Debug.Log("Change CutScene : " + NowSceneNum.ToString());
+                SceneImage.sprite = SceneImageArray[NowSceneNum];   // 이미지 변경
+
+                StartTyping(SceneTextArray[NowSceneNum], TypingDelay);   // 텍스트 타이핑
+            }
 
         }
 
@@ -105,8 +196,9 @@ public class StartCutSceneUI : MonoBehaviour
             transform.GetChild(i).gameObject.SetActive(true);
         }
 
+        NowSceneNum = -1;
         SceneImage.sprite = SceneImageArray[0];
-        SceneText.text = SceneTextArray[0];
+
 
         t = fadeTime;
         while (t > 0)
@@ -121,7 +213,8 @@ public class StartCutSceneUI : MonoBehaviour
         cutScenePlaying = true;
 
         Ftime = 0f;
-        NowSceneNum = 0;
+        NowSceneNum = -1;
+        isTextTyping = false;
 
     }
 
@@ -154,6 +247,7 @@ public class StartCutSceneUI : MonoBehaviour
         SceneImage.sprite = SceneImageArray[0];
         SceneText.text = SceneTextArray[0];
 
+        /*
         t = fadeTime;
         while (t > 0)
         {
@@ -163,10 +257,13 @@ public class StartCutSceneUI : MonoBehaviour
             yield return null;
         }
         SetShadowAlpha(0f);
-
+        */
+        
         UserDataManager.UserDataManagerInstance.firstPlay = false;
 
-        gameObject.SetActive(false);
+        FinishCutSceneAction?.Invoke();
+
+        //gameObject.SetActive(false);
     }
 
 

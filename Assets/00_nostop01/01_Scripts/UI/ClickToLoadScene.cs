@@ -10,6 +10,13 @@ public class ClickToLoadScene : MonoBehaviour
     public float fadeDuration = 1f;   // 페이드 시간 (초)
     private bool isTransitioning = false; // 중복 입력 방지용
 
+    // by 이상협
+    public StartCutSceneUI StartCutScene;
+
+    bool playingCutScene = false;
+
+    // = = = = =
+
     void Start()
     {
         if (fadeImage == null)
@@ -22,6 +29,13 @@ public class ClickToLoadScene : MonoBehaviour
             fadeImage.gameObject.SetActive(true);
         }
 
+        // by 이상협
+        if (StartCutScene == null)
+        {
+            StartCutScene = GameObject.Find("StartCutScene").GetComponent<StartCutSceneUI>();
+        }
+        // = = = = =
+        
         // 씬 시작 시 페이드 인
         StartCoroutine(FadeIn());
     }
@@ -34,8 +48,31 @@ public class ClickToLoadScene : MonoBehaviour
         if (Input.GetMouseButtonDown(0) ||
             (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
         {
+            // by 이상협 : 컷씬 재생
+            if (playingCutScene)
+            {
+                Debug.Log("Clicked on Playing CutScene");
+                StartCutScene.SkipNowOne();
+                return;
+            }
+            
+            if (UserDataManager.UserDataManagerInstance.firstPlay)
+            {
+                Debug.Log("Play CutScene...");
+                playingCutScene = true;
+                StartCutScene.PlayCutScene(OnCutsceneComplete);
+                return;
+            }
+            // = = = = = = = = = = =
+
+
             StartCoroutine(FadeOutAndLoadNextScene());
         }
+    }
+    private void OnCutsceneComplete()
+    {
+        playingCutScene = false;
+        StartCoroutine(FadeOutAndLoadNextScene());
     }
 
     // 페이드 인 (어두운 → 밝은)

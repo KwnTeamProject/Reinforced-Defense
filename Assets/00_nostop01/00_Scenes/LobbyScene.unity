@@ -1726,6 +1726,7 @@ MonoBehaviour:
   UserNameText: {fileID: 1108367196}
   GoldText: {fileID: 16316397}
   BGImage: {fileID: 1951008819}
+  CutSceneObject: {fileID: 0}
 --- !u!224 &286753586
 RectTransform:
   m_ObjectHideFlags: 0
