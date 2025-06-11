@@ -1593,7 +1593,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 1536b75b9c831c14c97c26700d540877, type: 3}
     m_FontSize: 14
     m_FontStyle: 1
     m_BestFit: 1
@@ -1825,7 +1825,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 1536b75b9c831c14c97c26700d540877, type: 3}
     m_FontSize: 14
     m_FontStyle: 1
     m_BestFit: 1
@@ -3002,6 +3002,8 @@ MonoBehaviour:
   RecordText: {fileID: 1659584305}
   GoldText: {fileID: 941194323}
   KillText: {fileID: 1593956049}
+  winningAudio: {fileID: 0}
+  defeatAudio: {fileID: 0}
 --- !u!1 &1509164722
 GameObject:
   m_ObjectHideFlags: 0
