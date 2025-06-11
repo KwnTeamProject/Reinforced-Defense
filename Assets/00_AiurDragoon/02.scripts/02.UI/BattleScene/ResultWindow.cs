@@ -28,9 +28,9 @@ public class ResultWindow : MonoBehaviour
             int Min = ((int)record) / 60;
             Rtxt += ((Min < 10) ? "0" + Min.ToString() : Min.ToString()) + ":";
             int Sec = ((int)record) % 60;
-            Rtxt += ((Sec < 10) ? "0" + Sec.ToString() : Sec.ToString()) + ":";
+            Rtxt += ((Sec < 10) ? "0" + Sec.ToString() : Sec.ToString()) + ".";
             int MSec = (int)((record - (int)record) * 100);
-            Rtxt += ((MSec < 10) ? "0" + MSec.ToString() : MSec.ToString()) + ":";
+            Rtxt += ((MSec < 10) ? "0" + MSec.ToString() : MSec.ToString());
 
             RecordText.text = Rtxt;
 
