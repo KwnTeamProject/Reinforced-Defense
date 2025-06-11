@@ -1,3 +1,4 @@
+using NUnit.Framework.Internal.Commands;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,54 +9,73 @@ public class SettingUI : MonoBehaviour
     [SerializeField] Slider briSlider;
 
 
-    public float Volume { get; private set; }
+    public float AudVolume { get; private set; }
     public float Brightness { get; private set; }
 
-    float TmpVolume = 0.5f, TmpBrightness = 0.0f;
+    float TmpVolume = 0.5f, TmpBrightness = 1.0f;
 
     private void Start()
     {
-        volSlider.value = UserDataManager.UserDataManagerInstance.Volume;
-        briSlider.value = 1.0f - UserDataManager.UserDataManagerInstance.Brightness;
+        AudVolume = UserDataManager.UserDataManagerInstance.Volume;
+        Brightness = UserDataManager.UserDataManagerInstance.Brightness;
+
+        volSlider.value = AudVolume;
+        briSlider.value = Brightness;
     }
 
 
     public void ChangeTmpVolume()
     {
         TmpVolume = volSlider.value;
+
+        GameObject.Find("BGMObject").GetComponent<AudioSource>().volume = TmpVolume;
     }
     public void ChangeTmpBright()
     {
         TmpBrightness = briSlider.value;
-    }
-    public void SaveSettings()
-    {
-        Volume = TmpVolume;
-        Brightness = TmpBrightness;
-
-        UserDataManager.UserDataManagerInstance.Volume = Volume;
-        UserDataManager.UserDataManagerInstance.Brightness = 1.0f - Brightness;
-
-        GameObject.Find("BGMObject").GetComponent<AudioSource>().volume = Volume;
-
 
         Image IMG = GameObject.Find("BrightnessImage").GetComponent<Image>();
-        float alpha = Mathf.Clamp01(UserDataManager.UserDataManagerInstance.Brightness - 0.1f);
+        float alpha = Mathf.Clamp01(1.0f - TmpBrightness - 0.1f);
 
         Color c = IMG.color;
-        Debug.LogFormat("Color:{0}", c);
+        //Debug.LogFormat("Color:{0}", c);
         c.a = alpha;
-        Debug.LogFormat("alpha:{0}", c.a);
+        //Debug.LogFormat("alpha:{0}", c.a);
         IMG.color = c;
 
     }
-    public void UndoSettings()
+    public void SaveSettings()
     {
-        TmpVolume = Volume;
+        AudVolume = TmpVolume;
+        Brightness = TmpBrightness;
+
+        TmpVolume = AudVolume;
         TmpBrightness = Brightness;
 
-        volSlider.value = Volume;
-        briSlider.value = Volume;
+        UserDataManager.UserDataManagerInstance.Volume = AudVolume;
+        UserDataManager.UserDataManagerInstance.Brightness = Brightness;
+
+        //Debug.LogFormat("Saved Settings : {0}, {1}", UserDataManager.UserDataManagerInstance.Volume, UserDataManager.UserDataManagerInstance.Brightness);
+        //Debug.Log("= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =");
+
+    }
+
+
+    public void UndoSettings()
+    {
+        //Debug.LogFormat("UserData Settings : {0}, {1}", AudVolume, Brightness);
+        //Debug.LogFormat("Apply Settings : {0}, {1}", TmpVolume, Brightness);
+
+        TmpVolume = AudVolume;
+        TmpBrightness = Brightness;
+
+        //Debug.Log("Undoing Temp Setting");
+        //Debug.LogFormat("Apply Settings : {0}, {1}", TmpVolume, Brightness);
+
+        volSlider.value = AudVolume;
+        briSlider.value = Brightness;
+
+
 
     }
 

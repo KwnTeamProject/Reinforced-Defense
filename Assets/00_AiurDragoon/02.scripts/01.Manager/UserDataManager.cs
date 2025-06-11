@@ -121,7 +121,8 @@ public class UserDataManager : MonoBehaviour
             firstPlay = true;
 
             Volume = 0.5f;
-            Brightness = 0.0f;
+            Brightness = 1.0f;
+            //Debug.LogFormat("Failed Load Settings : {0}, {1}", Volume, Brightness);
 
             return;
         }

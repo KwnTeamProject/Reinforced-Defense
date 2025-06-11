@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4242056631046202534}
   - component: {fileID: 1514010295627286427}
   - component: {fileID: 8947467609107580974}
+  - component: {fileID: 881256828358842531}
   m_Layer: 8
   m_Name: MagicTower
   m_TagString: Untagged
@@ -250,3 +251,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &881256828358842531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4776967689015813822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcccd901a7f82614f97d59e6d028b8f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

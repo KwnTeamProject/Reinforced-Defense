@@ -1643,8 +1643,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Need Upgrade Product: 10'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 834426fac6131914aaffb13567d7e419, type: 2}
+  m_sharedMaterial: {fileID: 3483384188026999110, guid: 834426fac6131914aaffb13567d7e419,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1674,7 +1675,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -4010,6 +4011,7 @@ GameObject:
   m_Component:
   - component: {fileID: 871802807}
   - component: {fileID: 871802808}
+  - component: {fileID: 871802809}
   m_Layer: 5
   m_Name: WinningBGM
   m_TagString: Untagged
@@ -4133,6 +4135,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &871802809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871802806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcccd901a7f82614f97d59e6d028b8f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &881185528
 GameObject:
   m_ObjectHideFlags: 0
@@ -4630,6 +4644,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1171153607}
   - component: {fileID: 1171153608}
+  - component: {fileID: 1171153609}
   m_Layer: 5
   m_Name: DefeatBGM
   m_TagString: Untagged
@@ -4753,6 +4768,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1171153609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171153606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcccd901a7f82614f97d59e6d028b8f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1191436397
 GameObject:
   m_ObjectHideFlags: 0

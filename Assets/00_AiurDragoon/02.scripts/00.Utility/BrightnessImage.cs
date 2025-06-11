@@ -7,7 +7,7 @@ public class BrightnessImage : MonoBehaviour
     void Start()
     {
         Image IMG = gameObject.GetComponent<Image>();
-        float alpha = Mathf.Clamp01(UserDataManager.UserDataManagerInstance.Brightness - 0.1f);
+        float alpha = Mathf.Clamp01(1.0f - UserDataManager.UserDataManagerInstance.Brightness - 0.1f);
 
         Color c = IMG.color;
         //Debug.LogFormat("Color:{0}", c);
@@ -19,7 +19,7 @@ public class BrightnessImage : MonoBehaviour
     private void OnEnable()
     {
         Image IMG = gameObject.GetComponent<Image>();
-        float alpha = Mathf.Clamp01(UserDataManager.UserDataManagerInstance.Brightness - 0.1f);
+        float alpha = Mathf.Clamp01(1.0f - UserDataManager.UserDataManagerInstance.Brightness - 0.1f);
 
         Color c = IMG.color;
         //Debug.LogFormat("Color:{0}", c);
